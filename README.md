@@ -45,14 +45,9 @@ ffmpeg -i <input> -c:v libx264 -crf 23 -preset ultrafast -an output.mkv
 ffmpeg -i <input> -c:v libx264 -crf 23 -preset medium -an output.mkv
 ffmpeg -i <input> -c:v libx264 -crf 23 -preset veryslow -an output.mkv
 ```
-All presets: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
-Example results (all have the same quality!):
-| Preset |Encoding Time| File Size|
-| :-- | :--: | --: |
-| ultrafast |	4.85s | 15M |
-| medium | 24.13s | 5.2M |
-| veryslow |	112.23s	| 4.9M |
 
+Transcoding: Conversion from one encoder to another.  Ex- H264 to H265
+Transmuxing: Conversion from one format/Container to another.  Ex- mp4 to mkv
 ```sh
 # Transcoding from one codec to another (e.g. H.264 using libx264):
 ffmpeg -i <input> -c:v libx264 output.mp4
@@ -98,14 +93,16 @@ ffmpeg -ss 30 -i input.wmv -c copy -t 10 output.wmv
 ffmpeg -ar 48000 -t 60 -f s16le -acodec pcm_s16le -i /dev/u­random -ab 64K -f mp2 -acodec mp2 -y noise.mp2
 ```
 
+### Add album cover
+```sh
 ffmpeg -i input.mp3 -i cover.png -c copy -metadata:s:v title="Album cover" -metadata:s:v comment="Cover (Front)" out.mp3
+```
 
 ### converting file to formats
 ```sh
 ffmpeg -i MyMovie.mkv -vf scale=-1:720 -c:v libx264 -crf 0 -preset veryslow -c:a copy MyMovie_720p.mkv
 ffmpeg -i MyMovie.mkv -vf scale=-1:720 -c:v libx264 -crf 18 -preset veryslow -c:a copy MyMovie_720p.mkv
 ```
-
 The scale video filter is for resizing the video. You just set one size – which is the height in this example – and use -1 for the other dimension. ffmpeg will recalculate the correct value automatically while preserving the aspect ratio.
 
 Srcs:
