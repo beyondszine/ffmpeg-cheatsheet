@@ -15,23 +15,27 @@ ex- grabbing screen, "images" as input regex.
 ffmpeg -f image2 -i image%d.jpg –r 25 video.flv
 ```
 - ffmpeg calls the FFmpeg application in the command line window, could also be the full path to the FFmpeg binary or .exe file
-- -i is follwed by the path to the input video
-- -c:v sets the video codec you want to use
+- `-i` is follwed by the path to the input video
+- `-c:v` sets the video codec you want to use
 - Options include libx264 for H.264, libx265 for H.265/HEVC, libvpx-vp9 for VP9, and copy if you want to preserve the video codec of the input video
-- -b:v sets the video bitrate, use a number followed by M to set value in Mbit/s, or K to set value in Kbit/s
-- -c:a sets the audio codec you want to use Options include aac for use in combination with H.264 and H.265/HEVC, libvorbis for VP9, and copy if you want to preserve the audio codec of the input video
-- -b:a sets the audio bitrate of the output video
-- -vf sets so called video filters, which allow you to apply transformations on a video like scale for changing the resolution and setdar for setting an aspect ratio
-- -r sets the frame rate of the output video
-- -pix_fmt sets the pixel format of the output video, required for some input files and so recommended to always use and set to yuv420p for playback
-- -map allows you to specify streams inside a file
-- -ss seeks to the given timestamp in the format HH:MM:SS
-- -t sets the time or duration of the output
+- `-b:v` sets the video bitrate, use a number followed by M to set value in Mbit/s, or K to set value in Kbit/s
+- `-c:a` sets the audio codec you want to use Options include aac for use in combination with H.264 and H.265/HEVC, libvorbis for VP9, and copy if you want to preserve the audio codec of the input video
+- `-b:a` sets the audio bitrate of the output video
+- `-vf` sets so called video filters, which allow you to apply transformations on a video like scale for changing the resolution and setdar for setting an aspect ratio
+- `-r` sets the frame rate of the output video
+- `-pix_fmt` sets the pixel format of the output video, required for some input files and so recommended to always use and set to yuv420p for playback
+- `-map` allows you to specify streams inside a file
+- `-ss` seeks to the given timestamp in the format HH:MM:SS
+- `-t` sets the time or duration of the output
 
 ![ffmpeg_arch.png](https://github.com/beyondszine/ffmpeg-cheatsheet/blob/master/ffmpeg_arch.png?raw=true)
-SPEED VS. QUALITY VS. FILE SIZE
+
+`SPEED` vs. `QUALITY` vs. `FILE SIZE`
 (Lossy) encoding is always a trade-off between:
-![ffmpeg_tradeoff.png](https://github.com/beyondszine/ffmpeg-cheatsheet/blob/master/ffmpeg_tradeoff.png?raw=true)
+<p align="center">
+  <img src="https://github.com/beyondszine/ffmpeg-cheatsheet/blob/master/ffmpeg_tradeoff.png?raw=true">
+</p>
+
 - You can have fast, high-quality encoding, but the file will be large
 - You can have high-quality, smaller file size, but the encoding will take longer
 - You can have small files with fast encoding, but the quality will be bad.
@@ -43,11 +47,11 @@ ffmpeg -i <input> -c:v libx264 -crf 23 -preset veryslow -an output.mkv
 ```
 All presets: ultrafast, superfast, veryfast, faster, fast, medium, slow, slower, veryslow
 Example results (all have the same quality!):
-| Preset |Encoding Time|	File Size|
-|:--|:--|:--|
-|ultrafast|	4.85s	|15M |
-|medium	|24.13s	|5.2M |
-|veryslow |	112.23s	|4.9M|
+| Preset |Encoding Time| File Size|
+| :-- | :--: | --: |
+| ultrafast |	4.85s | 15M |
+| medium | 24.13s | 5.2M |
+| veryslow |	112.23s	| 4.9M |
 
 ```sh
 # Transcoding from one codec to another (e.g. H.264 using libx264):
