@@ -28,10 +28,10 @@ ffmpeg -f image2 -i image%d.jpg –r 25 video.flv
 - -ss seeks to the given timestamp in the format HH:MM:SS
 - -t sets the time or duration of the output
 
-![ffmpeg_arch.png]()
+![ffmpeg_arch.png](https://github.com/beyondszine/ffmpeg-cheatsheet/blob/master/ffmpeg_arch.png?raw=true)
 SPEED VS. QUALITY VS. FILE SIZE
 (Lossy) encoding is always a trade-off between:
-![ffmpeg_tradeoff.png]()
+![ffmpeg_tradeoff.png](https://github.com/beyondszine/ffmpeg-cheatsheet/blob/master/ffmpeg_tradeoff.png?raw=true)
 - You can have fast, high-quality encoding, but the file will be large
 - You can have high-quality, smaller file size, but the encoding will take longer
 - You can have small files with fast encoding, but the quality will be bad.
